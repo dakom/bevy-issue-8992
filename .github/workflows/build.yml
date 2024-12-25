@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
 
       - name: Install toolchain
         uses: actions-rust-lang/setup-rust-toolchain@v1
@@ -27,7 +29,7 @@ jobs:
           version: 'latest' 
       
       - name: Build frontend
-        run: trunk build --release --cargo-profile wasm-release --public-url=https://dakom.github.io/bevy-issue-8892/
+        run: trunk build --release --cargo-profile wasm-release --public-url=https://dakom.github.io/bevy-issue-8992/
       
       - name: Copy for 404 redirect
         run: cp ./dist/index.html ./dist/404.html
