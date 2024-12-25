@@ -4,6 +4,7 @@ edition = "2021"
 version = "0.0.1"
 
 [dependencies]
+cfg-if = "1.0.0"
 js-sys = "0.3.72"
 wasm-bindgen = "0.2.93"
 tracing-subscriber = {version = "0.3.18", features = ["time", "json", "env-filter"]}
@@ -39,6 +40,14 @@ features = [
     "HtmlElement",
     "HtmlCanvasElement",
 ]
+
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+# need to add in tls
+ureq = { version = "2.10", default-features = false, features = [
+  "brotli",
+  "gzip",
+  "tls",
+] }
 
 ### Profiles
 

@@ -16,14 +16,20 @@ This example changes the max directional lights to 10 on webgl, and shows a scen
 
 In order to make this example run on the web, it also builds off a currently-open PR to add http support (https://github.com/bevyengine/bevy/pull/16366)
 
-# Run in dev mode
+# Run in browser dev mode
 
 ```bash
 trunk serve --port 8000 
 ```
 
-# Build for release (happens automatically in CI)
+# Build for browser release (happens automatically in CI)
 
 ```bash
 trunk build --release --cargo-profile wasm-release
+```
+
+# Run in native dev mode
+
+``bash
+cargo run
 ```

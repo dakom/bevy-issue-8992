@@ -9,7 +9,7 @@ use play::{play_rotate_sys, play_start_sys};
 use state::AppState;
 
 pub fn main() {
-    logging::init_logger();
+    logging::init_logger(&["info"]);
 
     App::new()
         .add_plugins(
