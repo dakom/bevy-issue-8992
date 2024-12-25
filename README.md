@@ -28,8 +28,8 @@ trunk serve --port 8000
 trunk build --release --cargo-profile wasm-release
 ```
 
-# Run in native dev mode
+# Run native 
 
-``bash
-cargo run
+```bash
+cargo run --release
 ```
