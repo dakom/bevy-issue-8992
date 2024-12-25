@@ -28,9 +28,12 @@ pub fn main() {
         .insert_state(AppState::Loading)
         .add_systems(OnEnter(AppState::Loading), load_assets_sys)
         .add_systems(OnEnter(AppState::Playing), play_start_sys)
-        .add_systems(Update, (
-            check_loading_sys.run_if(in_state(AppState::Loading)),
-            play_rotate_sys.run_if(in_state(AppState::Playing)),
-        ))
+        .add_systems(
+            Update,
+            (
+                check_loading_sys.run_if(in_state(AppState::Loading)),
+                play_rotate_sys.run_if(in_state(AppState::Playing)),
+            ),
+        )
         .run();
 }

@@ -4,13 +4,30 @@ edition = "2021"
 version = "0.0.1"
 
 [dependencies]
-bevy = { path = "external/bevy", features = ["jpeg", "http_source"] }
 js-sys = "0.3.72"
 wasm-bindgen = "0.2.93"
 tracing-subscriber = {version = "0.3.18", features = ["time", "json", "env-filter"]}
 tracing = "0.1"
 tracing-web = "0.1"
 tracing-panic = "0.1.2"
+
+[dependencies.bevy]
+path = "external/bevy"
+default-features = false
+features = [
+    "bevy_asset",
+    "bevy_winit",
+    "bevy_window",
+    "bevy_core_pipeline",
+    "bevy_pbr",
+    "bevy_gltf",
+    "bevy_state",
+    "tonemapping_luts",
+    "webgl2",
+    "png",
+    "jpeg", 
+    "http_source"
+] 
 
 [dependencies.web-sys]
 version = "0.3.69"
