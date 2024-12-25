@@ -1,0 +1,41 @@
+[package]
+name = "app"
+edition = "2021"
+version = "0.0.1"
+
+[dependencies]
+bevy = { path = "external/bevy", features = ["jpeg", "http_source"] }
+js-sys = "0.3.72"
+wasm-bindgen = "0.2.93"
+tracing-subscriber = {version = "0.3.18", features = ["time", "json", "env-filter"]}
+tracing = "0.1"
+tracing-web = "0.1"
+tracing-panic = "0.1.2"
+
+[dependencies.web-sys]
+version = "0.3.69"
+features = [
+    "console",
+    "MouseEvent",
+    "Document",
+    "Element",
+    "HtmlElement",
+    "HtmlCanvasElement",
+]
+
+### Profiles
+
+[profile.release]
+codegen-units = 1
+lto = "thin"
+
+[profile.wasm-release]
+inherits = "release"
+opt-level = "s"
+strip = "debuginfo"
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
