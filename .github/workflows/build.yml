@@ -29,8 +29,6 @@ jobs:
           version: 'latest' 
       
       - name: Build frontend
-        env:
-          RUSTFLAGS: -Awarnings
         run: trunk build --release --cargo-profile wasm-release --public-url=https://dakom.github.io/bevy-issue-8992/
       
       - name: Copy for 404 redirect

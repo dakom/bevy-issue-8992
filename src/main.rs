@@ -1,3 +1,4 @@
+#![allow(warnings)]
 mod assets;
 mod logging;
 mod play;
