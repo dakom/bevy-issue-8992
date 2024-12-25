@@ -1,3 +1,7 @@
+# Live demo
+
+[https://dakom.github.io/bevy-issue-8892](https://dakom.github.io/bevy-issue-8892)
+
 # Run in dev mode
 
 ```bash
