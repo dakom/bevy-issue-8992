@@ -2,7 +2,7 @@
 
 [https://dakom.github.io/bevy-issue-8992](https://dakom.github.io/bevy-issue-8992)
 
-_note: the gltf assets are external, but the wasm itself is around 50MB... all in all, wait a while for things to load - no progress bar atm_
+_note: the gltf assets are external, but the wasm itself is also not small... all in all, wait a while for things to load - no progress bar atm_
 
 # About
 
