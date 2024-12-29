@@ -2,7 +2,9 @@
 
 [https://dakom.github.io/bevy-issue-8992](https://dakom.github.io/bevy-issue-8992)
 
-_note: the gltf assets are external, but the wasm itself is also not small... all in all, wait a while for things to load - no progress bar atm_
+To use just one light and no fog: [https://dakom.github.io/bevy-issue-8992?light=false&fog=false](https://dakom.github.io/bevy-issue-8992?light=false&fog=false)
+
+_note: the gltf assets are external, but the wasm itself is also not small... all in all, wait a while for things to load_
 
 # About
 

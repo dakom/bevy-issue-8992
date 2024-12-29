@@ -11,6 +11,8 @@ tracing-subscriber = {version = "0.3.18", features = ["time", "json", "env-filte
 tracing = "0.1"
 tracing-web = "0.1"
 tracing-panic = "0.1.2"
+futures = "0.3.31"
+wasm-bindgen-futures = "0.4.49"
 
 [dependencies.bevy]
 path = "external/bevy"
@@ -39,6 +41,11 @@ features = [
     "Element",
     "HtmlElement",
     "HtmlCanvasElement",
+    "Window",
+    "CssStyleDeclaration",
+    "Url",
+    "UrlSearchParams",
+    "Location"
 ]
 
 [target.'cfg(not(target_arch = "wasm32"))'.dependencies]

@@ -1,6 +1,6 @@
 use bevy::prelude::*;
 
-use crate::{assets::AssetHandles, state::AppState};
+use crate::{assets::AssetHandles, config::Config, loading::BevyReadySender};
 
 #[derive(Resource)]
 pub struct Entities {
@@ -9,9 +9,10 @@ pub struct Entities {
 
 pub fn play_start_sys(
     mut commands: Commands,
-    mut next_state: ResMut<NextState<AppState>>,
+    mut ready_sender: ResMut<BevyReadySender>,
     asset_handles: Res<AssetHandles>,
     gltf_assets: Res<Assets<Gltf>>,
+    config: Res<Config>,
 ) {
     // Lights
     commands.spawn((
@@ -22,24 +23,29 @@ pub fn play_start_sys(
         Transform::IDENTITY.with_rotation(Quat::from_euler(EulerRot::XYZ, 1.0, 1.0, 1.0)),
     ));
 
-    commands.spawn((
-        DirectionalLight {
-            illuminance: 10000.0,
-            ..default()
-        },
-        Transform::IDENTITY.with_rotation(Quat::from_euler(EulerRot::XYZ, -1.0, -1.0, -1.0)),
-    ));
+    if config.light {
+        commands.spawn((
+            DirectionalLight {
+                illuminance: 10000.0,
+                ..default()
+            },
+            Transform::IDENTITY.with_rotation(Quat::from_euler(EulerRot::XYZ, -1.0, -1.0, -1.0)),
+        ));
+    }
 
     // Camera
-    commands.spawn((
+    let mut entity_commands = commands.spawn((
         Camera3d::default(),
         Transform::IDENTITY.with_translation(Vec3::new(0.0, 0.0, 4.5)),
-        DistanceFog {
+    ));
+
+    if config.fog {
+        entity_commands.insert(DistanceFog {
             color: Color::srgb(1.0, 0.0, 0.0),
             falloff: FogFalloff::from_visibility(100.0),
             ..default()
-        },
-    ));
+        });
+    }
 
     // Action
     let helmet_gltf = gltf_assets.get(&asset_handles.helmet).unwrap();
@@ -52,9 +58,7 @@ pub fn play_start_sys(
         helmet: helmet_entity,
     });
 
-    next_state.set(AppState::Playing);
-
-    tracing::info!("playing!");
+    ready_sender.send();
 }
 
 pub fn play_rotate_sys(time: Res<Time>, mut query: Query<&mut Transform>, entities: Res<Entities>) {
